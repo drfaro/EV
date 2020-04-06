@@ -1,0 +1,135 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Jogos Olimpicos",
+		"_postman_id": "dc5a7e47-00eb-16b7-49f7-9c0895453a2d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Atletas - Criar",
+			"request": {
+				"url": "localhost:3000/api/v1/athletes",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\":\"José\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Atletas - Listar",
+			"request": {
+				"url": "localhost:3000/api/v1/athletes",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\":\"José\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Competições - Criar",
+			"request": {
+				"url": "localhost:3000/api/v1/competitions",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\":\"nom\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Competições - Listar",
+			"request": {
+				"url": "localhost:3000/api/v1/competitions",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Competições - Iniciar",
+			"request": {
+				"url": "localhost:3000/api/v1/startcompetitions/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Competições - Encerrar",
+			"request": {
+				"url": "localhost:3000/api/v1/endcompetitions/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Partidas - Criar",
+			"request": {
+				"url": "localhost:3000/api/v1/matchs",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"competicao\": \"competicao 3 Dardo\", \n\t\"atleta\": \"atleta 5\", \n\t\"value\": \"10.234\", \n\t\"unidade\": \"s\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Partidas - Placar",
+			"request": {
+				"url": "localhost:3000/api/v1/results/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -27,7 +27,7 @@ class Api::V1::CompetitionControllerTest < ActionDispatch::IntegrationTest
 		post competition_url, params: { name: 'Some title' }
 		body = JSON.parse(@response.body)
 		assert_equal body['status'], "ERROR"
-		assert_equal body['message'], "invalid paramters"
+		assert_equal body['message'], "Parametros invalidos"
 
 	end
 	

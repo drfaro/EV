@@ -20,4 +20,4 @@ Athlete.create({nome: "atleta 2"})
 Competition.create({nome: "competicao 2", encerrada:true, tem_limite:false, limite:0, ordenacao:competition.ordenacao_desc })
 
 Athlete.create({nome: "atleta 3"})
-Competition.create({nome: "competicao 3 Dardo", encerrada:false, tem_limite:true, limite:3, ordenacao:competition.ordenacao_desc })
+Competition.create({nome: "competicao 3 Dardo", encerrada:false, tem_limite:false, limite:3, ordenacao:competition.ordenacao_desc })

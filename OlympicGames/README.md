@@ -1,24 +1,56 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# OlympicGames
+Com a chegada dos jogos olímpicos, fomos designados para construir uma API REST em Ruby para o COB (Comitê Olímico Brasileiro), que será responsável por marcar e dizer os vencedores das seguintes modalidades:
 
-Things you may want to cover:
+  - 100m rasos: Menor tempo vence
+  - Lançamento de Dardo: Maior distância vence
 
-* Ruby version
 
-* System dependencies
+### Installation
 
-* Configuration
+Gerar container
 
-* Database creation
+```sh
+$ docker-compose build
+$ docker-compose run --rm --service-ports ruby_dev
+```
 
-* Database initialization
+Dentro do container, iniciar o projeto.
 
-* How to run the test suite
+```sh
+$ cd OlympicGames
+$ bundle install
+$ rails db:setup
+$ rails server -p $PORT -b 0.0.0.0
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Dentro do container, rodar os testes.
 
-* Deployment instructions
+```sh
+$ cd OlympicGames
+$ rails test
+```
 
-* ...
+Funcoes da API
+- Atletas 
+	- Criar
+	- Listar
+- Competições 
+	- Criar
+	- Listar
+	- Iniciar
+	- Encerrar
+- Partidas 
+	- Criar
+	- Placar
+
+# Postmam
+Importar o arquivo de dentro do projeto na diretorio raiz
+ ```sh
+ OlympicGames/OlympicGames.postman_collection.json 
+```
+ou link download da collection
+ ```sh
+https://www.getpostman.com/collections/0a9808841537eb9da692
+```
