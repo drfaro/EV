@@ -8,25 +8,25 @@ class Api::V1::StartcompetitionsController < ApplicationController
 	end
 
 	def create
-		validate_and_update(competitions_params)
+		validate_and_update(params[:id])
 	end
 
 	private
 	def validate_and_update(param_id)
-		if param_id
+		if param_id != nil
 			competition = Competition.find(param_id)
-			if competition.update_attributes({inicio:DateTime.now, encerrada:false})
-				render json: {status: 'SUCCESS', message:'Competição iniciada', data:competition},status: :ok
+			if competition != nil
+				if competition.update({inicio:DateTime.now, encerrada:false})
+					render json: {status: 'SUCCESS', message:'Competição iniciada', data:competition},status: :ok
+				else
+					render json: {status: 'ERROR', message:'Ocorreu um erro ao iniciar competição', data:competition.errors},status: :unprocessable_entity
+				end
 			else
-				render json: {status: 'ERROR', message:'Ocorreu um erro iniciar competição', data:competition.errors},status: :unprocessable_entity
+				render json: {status: 'ERROR', message:'Competição não encontrada', data:params},status: :unprocessable_entity
 			end
 		else
 			render json: {status: 'ERROR', message:'Parametros invalidos', data:params},status: :unprocessable_entity
 		end
 	end	
-
-	private
-	def competitions_params
-		params.require(:id)
-	end	
+	
 end

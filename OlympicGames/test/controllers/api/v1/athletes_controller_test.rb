@@ -1,19 +1,50 @@
 require 'test_helper'
+require "json"
 
 class Api::V1::AthletesControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
 
-	test "create an athletes" do
-	  post "/api/v1/athletes"
-	  assert_response :success
-	  
-	  #post "/athletes",
-	  #  params: { athletes: { nome: "Nome test 1"} }
-	
-	  #assert_select "nome", "Nome test 1"
+	athlete_url = '/api/v1/athletes'
+
+	test "create athlete" do
+
+		get athlete_url
+		assert_response :success
+		body = JSON.parse(@response.body)
+		total_athletes = body['data'].length
+		total_athletes += 1
+
+		post athlete_url, params: { athlete: { nome: 'Some title' } }
+		assert_response :success
+
+		get athlete_url
+		body = JSON.parse(@response.body)
+		assert_equal total_athletes, body['data'].length
+
 	end
 
+	test "validate create athletes" do
+		
+		get athlete_url
+		post athlete_url, params: { athlete: { name: 'Some title' } }
+		body = JSON.parse(@response.body)
+		assert_equal body['status'], "ERROR"
+		assert_equal body['message'], "invalid paramters"
+
+	end
+
+	test "try dupicate athlete" do
+		
+		get athlete_url
+		assert_response :success
+		body = JSON.parse(@response.body)
+		athlete = body['data'].first
+		
+		post athlete_url, params: { nome: athlete['nome'] }
+		assert_response :success
+
+		body = JSON.parse(@response.body)
+		assert_equal body['message'], "O atleta ja era cadastrado"
+
+	end
 
 end

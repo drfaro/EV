@@ -8,13 +8,13 @@ class Api::V1::EndcompetitionsController < ApplicationController
 	end
 
 	def create
-		validate_and_update(competitions_params)
+		validate_and_update(params[:id])
 	end
 	private
 	def validate_and_update(param_id)
-		if param_id
+		if param_id != nil
 			competition = Competition.find(param_id)
-			if competition.update_attributes({fim:DateTime.now, encerrada:true})
+			if competition.update({fim:DateTime.now, encerrada:true})
 				render json: {status: 'SUCCESS', message:'Competição encerrada', data:competition},status: :ok
 			else
 				render json: {status: 'ERROR', message:'Ocorreu um erro finalizar competição', data:competition.errors},status: :unprocessable_entity
@@ -23,8 +23,6 @@ class Api::V1::EndcompetitionsController < ApplicationController
 			render json: {status: 'ERROR', message:'Parametros invalidos', data:params},status: :unprocessable_entity
 		end
 	end	
-	private
-	def competitions_params
-		params.require(:id)
-	end	
+
+
 end

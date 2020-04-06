@@ -6,7 +6,7 @@ class Api::V1::CompetitionsController < ApplicationController
 	
 	def create
 		competition = Competition.new(competitions_params)
-		
+
 		if (competition.tem_limite == nil)
 			competition.tem_limite = false
 			competition.limite = 0
@@ -15,13 +15,13 @@ class Api::V1::CompetitionsController < ApplicationController
 		if competition.save
 			render json: {status: 'SUCCESS', message:'Competição criada com sucesso', data:competition},status: :ok
 		else
-			render json: {status: 'ERROR', message:'error', data:competition.errors},status: :unprocessable_entity
+			render json: {status: 'ERROR', message:'Parametros invalidos', data:competition.errors},status: :unprocessable_entity
 		end
 	end
 
 	private
 	def competitions_params
-		params.permit(:nome, :tem_limite, :limite)
+		params.permit(:nome, :encerrada, :tem_limite, :limite, :ordenacao)
 	end
 
 end

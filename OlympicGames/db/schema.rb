@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_04_05_194442) do
     t.datetime "fim", precision: 6
     t.boolean "tem_limite", default: false 
     t.integer "limite", default: 0, precision: 2
-    t.string "ordenacao", precision: 3, null: false
+    t.string "ordenacao", precision: 3, default: 'ASC'
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
